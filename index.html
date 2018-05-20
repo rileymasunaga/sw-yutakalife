@@ -51,7 +51,7 @@
                     <label for="time">How long is your train ride? </label>
                     <input type="text" class="form-control" id="timer">
                 </div>
-                <button class="btn-primary" onclick="show(); setTimeout(hide2, 3000);">START</button>
+                <button class="btn-primary" onclick="show(); setTimeout(hide2, 40000);">START</button>
             </div>
             <div class="col-sm">
             </div>
@@ -84,7 +84,7 @@
 <script>
 
 function hide2() {
-  var stdtime = document.getElementById('timer').value*60000-Math.floor(Math.random() * 300000); ;
+  var stdtime = document.getElementById('timer').value;
   setTimeout(hide, stdtime);
 }
 

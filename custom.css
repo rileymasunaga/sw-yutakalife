@@ -216,7 +216,9 @@ label, p, button {color: white;
   }
 }
 
-.pulsate-css {
-    animation: pulsate 2s ease-out;
-    animation-iteration-count: infinite; 
-    opacity: .3;}
+
+
+@-webkit-keyframes slide {
+    from { background-position: 0 0; }
+    to { background-position: -400px 0; }
+}

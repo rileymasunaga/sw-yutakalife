@@ -5,8 +5,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
-    <meta name="author" content="">
-    <title>電車で英語</title>
+    <meta name="author" content="Yutaka-Life">
+    <link rel="shortcut icon" href="bb-fav.ico" />
+    <title>BACKBURNER</title>
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="custom.css" rel="stylesheet">
@@ -14,52 +15,75 @@
 
 <body>
     <div class="container ">
-        <div class="spacer"> </div>
-        <!-- Start Page -->
+        <!-- page1 -->
         <div class="row" id="page1">
-            <div class="col-sm">
-                <img class="train" src="train.png">
-                <h1>電車で英語</h1>
+            <div class="col-sm-8">
+                <div class="spacer"> </div>
+                <img class="logo" src="backburner.png">
                 <div class="form-group">
-                    <label for="time">How long is your train ride? (Mins) </label>
+                    <p>Backburner is a behavioral psychology that helps you retain what you study. </p>
+                    <!-- Input Field -->
+                    <!--                     <label class="subtitle" for="time">How long is your train ride? (Mins) </label>
                     <input type="text" class="form-control" id="timer" placeholder="何分？ e.g. 5">
+ -->
                 </div>
-                <button class="btn-primary" onclick="show(); setTimeout(hide2, 25000);">START</button>
-            </div>
-            <div class="col-sm">
+                <!-- show: Hides start elements and shows iframe
+
+                hide2: 25 sec timer, before hiding iframe and displaying end page -->
+                <button class="btn-burn" onclick="show(); setTimeout(hide2, 10000);">START</button>
             </div>
         </div>
-        <!-- End Page -->
+        <!-- page2 -->
         <div class="row hide" id="page2">
             <div class="col-sm">
+                <div class="spacer"> </div>
                 <h1>ここまでっ！</h1>
+                <button class="btn-burn" onclick="restart();setTimeout(hide2, 45000);">CONTINUE?</button>
+            </div>
+        </div>
+        <!-- Youtube-content -->
+        <div class="row">
+            <div class="col-sm">
+                <div class="embed-responsive embed-responsive-16by9">
+                    <iframe id="bbcontent" class=" hide embed-responsive-item" src="https://www.youtube.com/embed/I2qenHZdB6E?&yt:cc=on" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                </div>
             </div>
         </div>
     </div>
-    <iframe id="quiz" class="hide" border: 0; width=1 00%; height=100%; frameborder="0" src="https://www.helpfulgames.com/subjects/english/word-spelling.html"></iframe>
-    <!-- Show Script -->
+    <!-- Content -->
+    <!-- Show: Display Iframe, hide start page elements-->
     <script>
     function show() {
-        var quiz = document.getElementById("quiz");
-        quiz.classList.add("show");
+        var bbcontent = document.getElementById("bbcontent");
+        bbcontent.classList.add("show");
         var page1 = document.getElementById("page1");
         page1.classList.add("hide");
     }
     </script>
-    <!-- Hide Script -->
+    <!-- Hide2: Start timer before showing -->
     <script>
     function hide2() {
-        var stdtime = document.getElementById('timer').value;
-        setTimeout(hide, stdtime);
-    }
+        // Code to get timer function from input field
+        //     var stdtime = document.getElementById('timer').value;
+        //     setTimeout(hide, stdtime);
+        // }
 
-    function hide() {
-        var quiz = document.getElementById("quiz");
+        // function hide() {
+        var bbcontent = document.getElementById("bbcontent");
         var element = document.getElementById("page2");
-        quiz.classList.remove("show");
-        element.classList.add("show")
+        bbcontent.classList.remove("show");
+        element.classList.add("show");
+    }
+    </script>
+    <!-- Restart:  -->
+    <script>
+    function restart() {
+        var bbcontent = document.getElementById("bbcontent");
+        bbcontent.classList.add("show");
+        var page2 = document.getElementById("page2");
+        page2.classList.add("hide");
+        page2.classList.remove("show");
 
-        ;
     }
     </script>
 </body>

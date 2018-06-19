@@ -32,15 +32,8 @@
                 <img class="logo" src="backburner.png">
                 <div class="form-group">
                     <p>Backburner is a behavioral psychology based tool that helps you retain what you study. </p>
-                    <!-- Input Field -->
-                    <!--                     <label class="subtitle" for="time">How long is your train ride? (Mins) </label>
-                    <input type="text" class="form-control" id="timer" placeholder="何分？ e.g. 5">
- -->
                 </div>
-                <!-- show: Hides start elements and shows iframe
-
-                hide2: 25 sec timer, before hiding iframe and displaying end page -->
-                <button class="btn-burn" onclick="show(); setTimeout(hide2, 12000);">START</button>
+                <button class="btn-burn" onclick="show(); setTimeout(hide, 12000);">START</button>
             </div>
         </div>
         <!-- page2 -->
@@ -48,7 +41,7 @@
             <div class="col-sm">
                 <div class="spacer"> </div>
                 <h1>ここまでっ！</h1>
-                <button class="btn-burn" onclick="restart();setTimeout(hide2, 45000);">CONTINUE?</button>
+                <button class="btn-burn" onclick="restart();setTimeout(hide, 45000);">CONTINUE?</button>
             </div>
         </div>
         <!-- Youtube-content -->
@@ -72,13 +65,7 @@
     </script>
     <!-- Hide2: Start timer before showing -->
     <script>
-    function hide2() {
-        // Code to get timer function from input field
-        //     var stdtime = document.getElementById('timer').value;
-        //     setTimeout(hide, stdtime);
-        // }
-
-        // function hide() {
+    function hide() {
         var bbcontent = document.getElementById("bbcontent");
         var element = document.getElementById("page2");
         bbcontent.classList.remove("show");

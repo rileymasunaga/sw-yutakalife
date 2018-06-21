@@ -25,15 +25,31 @@
 
 <body>
     <div class="container ">
-        <!-- page1 -->
-        <div class="row" id="page1">
+        <!-- start page -->
+        <div class="row" id="start">
             <div class="col-sm-8">
                 <div class="spacer"> </div>
                 <img class="logo" src="backburner.png">
                 <div class="form-group">
-                    <p>Backburner is a behavioral psychology based tool that helps you retain what you study. </p>
+                    <p>Backburner is an interruption based tool that helps you retain what you study. </p>
+                    <p>How would you rate your familiarity with the Korean language:</p>
+                    <select id="rating">
+                        <option value="1">1 - I am not familar with</option>
+                        <option value="2">2</option>
+                        <option value="3">3 - I am somewhat familiar with Korean</option>
+                        <option value="4">4</option>
+                        <option value="5">5 - I am very familiar with Korean</option>
+                    </select>
                 </div>
-                <button class="btn-burn" onclick="hide();show();">START</button>
+                <button class="btn-burn" onclick="start();">START</button>
+            </div>
+        </div>
+        <!-- thankyou page -->
+        <div class="row hide" id="thankyou">
+            <div class="col-sm">
+                <div class="spacer"> </div>
+                <h1>Thank you for your participation.</h1>
+                <p> You are not eligible to participate. </p>
             </div>
         </div>
         <!-- page2 -->
@@ -42,7 +58,7 @@
                 <div class="spacer"> </div>
                 <h1>ここまでっ！</h1>
                 <a id="end">
-                    <button class="btn-burn" onclick="restart();hide();">CONTINUE?</button>
+                    <button class="btn-burn" onclick="restart();hide();">CONTINUE</button>
                 </a>
             </div>
         </div>
@@ -74,7 +90,7 @@
             height: '390',
             width: '640',
             videoId: '9p0IJsrVkEU',
-            playerVars: { 'controls': 1, 'showinfo': 0, 'rel': 0, end:'112',},
+            playerVars: { 'controls': 1, 'showinfo': 0, 'rel': 0, end: '112', },
             events: {
                 'onStateChange': onPlayerStateChange
             }
@@ -99,9 +115,8 @@
     function show() {
         var video = document.getElementById("player");
         video.classList.add("show");
-        var page1 = document.getElementById("page1");
-        page1.classList.add("hide");
-        video.playVideo();
+        var start = document.getElementById("start");
+        start.classList.add("hide");
     }
     //Hide: Hide player, show end screen
     var showtime;
@@ -137,6 +152,18 @@
         endbutton.setAttribute("href", "distraction.html");
         setTimeout(function() { window.location.replace('distraction.html'); }, 7000);
 
+    }
+
+    function start() {
+        var familiarity = document.getElementById("rating").value;
+        if (familiarity < 4) {
+            hide();show();
+        }
+        else{
+        var thankyou = document.getElementById("thankyou");
+        var start = document.getElementById("start");
+        thankyou.classList.add("show");
+        start.classList.add("hide");}
     }
     </script>
 </body>

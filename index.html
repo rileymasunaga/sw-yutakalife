@@ -2,16 +2,16 @@
 <html lang="en">
 
 <head>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-45347730-3"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-45347730-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
+  gtag('config', 'UA-45347730-3');
+</script>
 
-    gtag('config', 'UA-45347730-3');
-    </script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
@@ -24,15 +24,33 @@
 </head>
 
 <body>
-    <div class="container ">
-        <!-- start page -->
+    <div class="container">
+        <!-- START PAGE -->
         <div class="row" id="start">
             <div class="col-sm-8">
                 <div class="spacer"> </div>
-                <img class="logo" src="backburner.png">
-                <div class="form-group">
-                    <p>Backburner is an interruption based tool that helps you retain what you study. </p>
-                    <p>How would you rate your familiarity with the Korean language:</p>
+                <!-- <img class="logo" src="backburner.png"> -->
+                    <h1>Korean Vocabulary Challenge</h1>
+                    <p>Can you learn Korean in just a few minutes? </p>
+                    <p>People who complete the quiz and get over 50% will be eligible to win a 2,000 yen amazon. gift card.</p>
+                    <h2>How to participate</h2>
+                    <ol>
+                        <li>You will watch a short video teaching korean vocabulary.</li>
+                        <li>After completing the vocabulary video, you’ll watch another short video. </li>
+                        <li>Then, participate in the quiz and try to recall as many animal names as you can.</li>
+                        <li>When you complete the quiz and score over 50%, you will be entered for a chance to win a gift card. </li>
+                    </ol>
+                    <p>Good luck! </p>
+                <button class="btn-burn" onclick="start();">START</button>
+                <div class="spacer"> </div>
+            </div>
+        </div>
+        <!-- PRE-QUIZ -->
+                <div class="row hide" id="prequiz">
+            <div class="col-sm-8">
+                <div class="spacer"> </div>
+                <!-- <img class="logo" src="backburner.png"> -->
+                    <H2>How would you rate your familiarity with the Korean language?</h2>
                     <select id="rating">
                         <option value="1">1 - I am not familar with</option>
                         <option value="2">2</option>
@@ -40,11 +58,11 @@
                         <option value="4">4</option>
                         <option value="5">5 - I am very familiar with Korean</option>
                     </select>
-                </div>
-                <button class="btn-burn" onclick="start();">START</button>
+                <button class="btn-burn" onclick="validate();">CONTINUE</button>
+                <div class="spacer"> </div>
             </div>
         </div>
-        <!-- thankyou page -->
+        <!-- THANK YOU PAGE -->
         <div class="row hide" id="thankyou">
             <div class="col-sm">
                 <div class="spacer"> </div>
@@ -52,7 +70,7 @@
                 <p> You are not eligible to participate. </p>
             </div>
         </div>
-        <!-- page2 -->
+        <!-- INTERRUPTOR - PAGE 2 -->
         <div class="row hide" id="page2">
             <div class="col-sm">
                 <div class="spacer"> </div>
@@ -62,11 +80,11 @@
                 </a>
             </div>
         </div>
-        <!-- Youtube-content -->
-        <div class="row">
+        <!-- YOUTUBE PLAYER CONTENT -->
+        <div class="row hide" id="playercontainer" >
             <div class="col-sm">
                 <div class="embed-responsive embed-responsive-16by9">
-                    <div id="player" class="hide">
+                    <div id="player">
                     </div>
                 </div>
             </div>
@@ -89,7 +107,7 @@
         player = new YT.Player('player', {
             height: '390',
             width: '640',
-            videoId: '9p0IJsrVkEU',
+            videoId: '66RLN_dQRtU',
             playerVars: { 'controls': 1, 'showinfo': 0, 'rel': 0, end: '112', },
             events: {
                 'onStateChange': onPlayerStateChange
@@ -113,10 +131,12 @@
 
     //    Show: Display Iframe, hide start page elements
     function show() {
-        var video = document.getElementById("player");
+        var video = document.getElementById("playercontainer");
         video.classList.add("show");
-        var start = document.getElementById("start");
-        start.classList.add("hide");
+        var prequiz = document.getElementById("prequiz");
+        prequiz.classList.add("hide");
+        prequiz.classList.remove("show");
+
     }
     //Hide: Hide player, show end screen
     var showtime;
@@ -124,8 +144,7 @@
     function hide() {
         showtime = setTimeout(
             function() {
-                var video = document.getElementById("player");
-
+                var video = document.getElementById("playercontainer");
                 var element = document.getElementById("page2");
                 video.classList.remove("show");
                 element.classList.add("show");
@@ -133,7 +152,7 @@
     }
     // Restart, show player, hide end screen
     function restart() {
-        var video = document.getElementById("player");
+        var video = document.getElementById("playercontainer");
 
         video.classList.add("show");
         var page2 = document.getElementById("page2");
@@ -143,27 +162,39 @@
     //End, Clear timer and show end screen. 
     function end() {
         clearTimeout(showtime);
-        var video = document.getElementById("player");
+        var video = document.getElementById("playercontainer");
         var element = document.getElementById("page2");
         var endbutton = document.getElementById("end");
         video.classList.remove("show");
         element.classList.add("show");
         endbutton.setAttribute("onclick", "");
-        endbutton.setAttribute("href", "distraction.html");
-        setTimeout(function() { window.location.replace('distraction.html'); }, 7000);
-
+        // endbutton.setAttribute("href", "distraction.html");
+        // setTimeout(function() { window.location.replace('distraction.html'); }, 7000);
+        endbutton.setAttribute("href", "post.html");
+        setTimeout(function() { window.location.replace('post.html'); }, 7000);
     }
 
-    function start() {
+// Hide Prequiz and display thank you or content
+    function validate() {
         var familiarity = document.getElementById("rating").value;
         if (familiarity < 4) {
-            hide();show();
+            hide();
+            show();
+        } else {
+            var thankyou = document.getElementById("thankyou");
+            var prequiz = document.getElementById("prequiz");
+            thankyou.classList.add("show");
+            prequiz.classList.add("hide");
+            prequiz.classList.remove("show");
+
         }
-        else{
-        var thankyou = document.getElementById("thankyou");
+    }
+// Hide start page show prequiz
+        function start() {
         var start = document.getElementById("start");
-        thankyou.classList.add("show");
-        start.classList.add("hide");}
+        start.classList.add("hide");
+        var prequiz = document.getElementById("prequiz");
+        prequiz.classList.add("show");
     }
     </script>
 </body>

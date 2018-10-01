@@ -29,14 +29,19 @@
         <div class="row" id="start">
             <div class="col-sm-8">
                 <div class="spacer"> </div>
-                <img class="logo" src="backburner.png">
-                    <p class="start-explanation">Backburner is a system that makes it easier to stay focused on educational material. It was developed at Startup Weekend Yokohama Project based on the Zeigarnik effect, the psychological theory that people remember uncompleted or interrupted tasks better than completed tasks. </p>
+                <!-- <img class="logo" src="backburner.png"> -->
+                    <h1>Korean Vocabulary Challenge</h1>
+                    <p>Can you learn Korean in just a few minutes? </p>
+                    <p>People who complete the quiz and get over 50% will be eligible to win a 2,000 yen amazon. gift card.</p>
+                    <h2>How to participate</h2>
                     <ol>
-                        <li>This demo is designed to help you learn the basics the fundamentals about blockchain.</li>
-                        <li>If interrupted, press the button labled 'continue' to return to the material.</li>
-                        <li>After completing the material, you’ll be prompted to take a short survey on your experience. </li>
+                        <li>You will watch a short video teaching korean vocabulary.</li>
+                        <li>After completing the vocabulary video, you’ll watch another short video. </li>
+                        <li>Then, participate in the quiz and try to recall as many animal names as you can.</li>
+                        <li>When you complete the quiz and score over 50%, you will be entered for a chance to win a gift card. </li>
                     </ol>
-                <button class="btn-burn" onclick="start();">BEGIN</button>
+                    <p>Good luck! </p>
+                <button class="btn-burn" onclick="start();">START</button>
                 <div class="spacer"> </div>
             </div>
         </div>
@@ -44,6 +49,7 @@
                 <div class="row hide" id="prequiz">
             <div class="col-sm-8">
                 <div class="spacer"> </div>
+                <!-- <img class="logo" src="backburner.png"> -->
                     <H2>How would you rate your familiarity with the Korean language?</h2>
                     <select id="rating">
                         <option value="1">1 - I am not familar with</option>
@@ -101,7 +107,7 @@
         player = new YT.Player('player', {
             height: '390',
             width: '640',
-            videoId: '93E_GzvpMA0',
+            videoId: '66RLN_dQRtU',
             playerVars: { 'controls': 1, 'showinfo': 0, 'rel': 0, end: '112', },
             events: {
                 'onStateChange': onPlayerStateChange
@@ -187,8 +193,8 @@
         function start() {
         var start = document.getElementById("start");
         start.classList.add("hide");
-            hide();
-            show();
+        var prequiz = document.getElementById("prequiz");
+        prequiz.classList.add("show");
     }
     </script>
 </body>
